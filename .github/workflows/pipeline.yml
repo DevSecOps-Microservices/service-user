@@ -120,22 +120,3 @@ jobs:
         run: |
           docker tag service-user:latest ghcr.io/devsecops-microservices/service-user:latest
           docker push ghcr.io/devsecops-microservices/service-user:latest
-
-      - name: Deploy service-user
-        run: |
-          docker stop service-user || true
-          docker rm service-user || true
-          docker pull ghcr.io/devsecops-microservices/service-user:latest
-          docker run -d \
-            --name service-user \
-            -p 8081:8081 \
-            --restart unless-stopped \
-            -e SPRING_PROFILES_ACTIVE=docker \
-            ghcr.io/devsecops-microservices/service-user:latest
-          sleep 15
-          echo "service-user deployed successfully"
-
-      - name: Verify deployment
-        run: |
-          docker ps | grep service-user
-          echo "Container is running ✅"
