@@ -123,8 +123,8 @@ jobs:
         run: |
           IMAGE_TAG=v1.${{ github.run_number }}-${GITHUB_SHA::7}
 
-          docker tag service-incident:latest ghcr.io/devsecops-microservices/service-user:latest
-          docker tag service-incident:latest ghcr.io/devsecops-microservices/service-user:${IMAGE_TAG}
+          docker tag service-user:latest ghcr.io/devsecops-microservices/service-user:latest
+          docker tag service-user:latest ghcr.io/devsecops-microservices/service-user:${IMAGE_TAG}
 
           docker push ghcr.io/devsecops-microservices/service-user:latest
           docker push ghcr.io/devsecops-microservices/service-user:${IMAGE_TAG}
